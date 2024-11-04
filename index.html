@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <h2>Percentage Calculator</h2>
+        <div>
+            <label for="number">Enter a number:</label><br>
+            <input type="number" id="number" placeholder="Enter a number">
+            <label for="weeks">Number of weeks:</label>
+            <input type="number" id="weeks" placeholder="Enter weeks" min="1" value="4">
+            <button onclick="calculateWeeks()" class="week-btn">Calculate Weeks</button>
+        </div>
+        <div>
+            <button onclick="calculatePercentage(2)">Calculate 2%</button>
+            <button onclick="calculatePercentage(5)">Calculate 5%</button>
+            <button onclick="calculatePercentage(10)">Calculate 10%</button>
+            <button onclick="calculatePercentage(20)">Calculate 20%</button>
+            <button onclick="calculatePercentage(25)">Calculate 25%</button>
+            <button onclick="calculatePercentage(30)">Calculate 30%</button>
+        </div>
+        <div class="result" id="result">
+            Results will appear here
+        </div>
+        <footer>
+            <p>Created by JJF Creation</p>
+            <p>For more ideas please send suggestions to: <a href="mailto:jjfcode@gmail.com">jjfcode@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
