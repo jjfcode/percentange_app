@@ -26,7 +26,7 @@ function calculatePercentage(percent) {
     const total = Number(number) + result;
     const halfTotal = total / 2;
     
-    document.getElementById('result').innerHTML = `
+    document.getElementById('percentageResult').innerHTML = `
         ${percent}% of ${number} is ${result.toFixed(2)}<br>
         Total amount: ${total.toFixed(2)}<br>
         50% of total: ${halfTotal.toFixed(2)}
@@ -56,15 +56,9 @@ function calculateWeeks() {
 }
 
 function calculateChargeDays() {
-    const number = document.getElementById('number').value;
     // Get the date strings from inputs
     const startDateStr = document.getElementById('startDate').value;
     const endDateStr = document.getElementById('endDate').value;
-    
-    if (number === '' || isNaN(number)) {
-        alert('Please enter a valid number');
-        return;
-    }
     
     if (!startDateStr || !endDateStr) {
         alert('Please select both start and end dates');
@@ -97,53 +91,33 @@ function calculateChargeDays() {
     
     // Check for special cases first
     if (startDayName === 'friday' && endDayName === 'monday') {
-        chargeDays = 1; // Weekend rate
-        rate = 'Weekend Rate (Friday to Monday)';
+        chargeDays = 1;
     } else if ((startDayName === 'friday' && endDayName === 'tuesday') || 
                (startDayName === 'thursday' && endDayName === 'monday') || 
                (totalDays === 3 && !['saturday', 'sunday'].includes(startDayName))) {
-        chargeDays = 1.25; // 1.25x rate
-        rate = '1.25x Rate';
+        chargeDays = 1.25;
     } else if ((startDayName === 'friday' && endDayName === 'wednesday') ||
                (startDayName === 'wednesday' && endDayName === 'monday') || 
                (totalDays === 4 && !['saturday', 'sunday'].includes(startDayName))) {
-        chargeDays = 1.5; // 1.5x rate
-        rate = '1.5x Rate';
+        chargeDays = 1.5;
     } else if ((startDayName === 'friday' && endDayName === 'thursday') ||
                (startDayName === 'tuesday' && endDayName === 'monday') || 
                (totalDays === 5 && !['saturday', 'sunday'].includes(startDayName))) {
-        chargeDays = 1.75; // 1.75x rate
-        rate = '1.75x Rate';
+        chargeDays = 1.75;
     } else if (startDayName === 'monday' && endDayName === 'monday') {
-        chargeDays = 2; // Full week rate
-        rate = 'Full Week Rate (Monday to Monday)';
+        chargeDays = 2;
     } else if (remainingDays > 0) {
-        // For other days with remaining days
         if (remainingDays >= 4) {
-            chargeDays += 2; // Charge as full week
-            rate = 'Full Week Rate';
+            chargeDays += 2;
         } else {
-            chargeDays += 1; // Partial week
-            rate = 'Partial Week Rate';
+            chargeDays += 1;
         }
-    } else {
-        rate = 'Full Week Rate';
     }
     
-    const totalCharge = Number(number) * chargeDays;
-    
     document.getElementById('result').innerHTML = `
-        Start Date: ${startDate.toLocaleDateString()}<br>
-        Return Date: ${endDate.toLocaleDateString()}<br>
         Total Days: ${totalDays} days<br>
-        Full Weeks: ${fullWeeks}<br>
-        Remaining Days: ${remainingDays}<br>
-        Start Day: ${startDayName.charAt(0).toUpperCase() + startDayName.slice(1)}<br>
-        End Day: ${endDayName.charAt(0).toUpperCase() + endDayName.slice(1)}<br>
-        Rate Type: ${rate}<br>
-        Charge Days: ${chargeDays} days<br>
-        Base Amount: $${Number(number).toFixed(2)}<br>
-        Total Charge: $${totalCharge.toFixed(2)}
+        Total Weeks: ${fullWeeks}<br>
+        Charge Days: ${chargeDays} days
     `;
 }
 
@@ -171,3 +145,29 @@ setInterval(updateDateTime, 1000);
 
 // Initial update
 updateDateTime();
+
+function calculateDayRate(rate) {
+    const resultText = document.getElementById('result').innerHTML;
+    const chargeDaysMatch = resultText.match(/Charge Days: ([\d.]+) days/);
+    
+    if (!chargeDaysMatch) {
+        alert('Please calculate charge days first');
+        return;
+    }
+    
+    const chargeDays = parseFloat(chargeDaysMatch[1]);
+    let total;
+    
+    if (rate === 1) {
+        total = chargeDays / 2;  // Divide by 2 for 1 day charge
+    } else if (rate === 1.5) {
+        total = (chargeDays / 2) * 1.5;  // Divide by 1.5 for 1.5 day charge
+    }
+    
+    // Only show the original results plus one calculation
+    document.getElementById('result').innerHTML = `
+        Total Days: ${resultText.match(/Total Days: [\d.]+ days/)[0]}<br>
+        Total Weeks: ${resultText.match(/Total Weeks: [\d.]+/)[0]}<br>
+        Charge Days: ${chargeDays} days<br><br>
+        Rate (${rate} day): ${total.toFixed(2)} days`;
+}

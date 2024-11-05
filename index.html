@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Percentage Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -26,28 +29,43 @@
             <button onclick="calculateWeeks()" class="week-btn">Calculate Weeks</button>
         </div>
         <div class="days-section">
-            <div class="date-inputs">
-                <div>
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" id="startDate">
+            <h2>Day & Week Calculator</h2>
+            <div class="calculator-container">
+                <div class="date-inputs-container">
+                    <div class="date-inputs">
+                        <div>
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" id="startDate">
+                        </div>
+                        <div>
+                            <label for="endDate">Return Date:</label>
+                            <input type="date" id="endDate">
+                        </div>
+                    </div>
+                    <button onclick="calculateChargeDays()" class="charge-btn">Calculate Charge Days</button>
+                    <div class="day-buttons">
+                        <button onclick="calculateDayRate(1)" class="day-btn">1 Day Charge</button>
+                        <button onclick="calculateDayRate(1.5)" class="day-btn">1.5 Day Charge</button>
+                    </div>
                 </div>
-                <div>
-                    <label for="endDate">Return Date:</label>
-                    <input type="date" id="endDate">
+                <div class="day-result" id="result">
+                    Results will appear here
                 </div>
             </div>
-            <button onclick="calculateChargeDays()" class="charge-btn">Calculate Charge Days</button>
         </div>
-        <div>
-            <button onclick="calculatePercentage(2)">Calculate 2%</button>
-            <button onclick="calculatePercentage(5)">Calculate 5%</button>
-            <button onclick="calculatePercentage(10)">Calculate 10%</button>
-            <button onclick="calculatePercentage(20)">Calculate 20%</button>
-            <button onclick="calculatePercentage(25)">Calculate 25%</button>
-            <button onclick="calculatePercentage(30)">Calculate 30%</button>
-        </div>
-        <div class="result" id="result">
-            Results will appear here
+        <div class="sales-section">
+            <h2>Sales %</h2>
+            <div class="percentage-buttons">
+                <button onclick="calculatePercentage(2)">Calculate 2%</button>
+                <button onclick="calculatePercentage(5)">Calculate 5%</button>
+                <button onclick="calculatePercentage(10)">Calculate 10%</button>
+                <button onclick="calculatePercentage(20)">Calculate 20%</button>
+                <button onclick="calculatePercentage(25)">Calculate 25%</button>
+                <button onclick="calculatePercentage(30)">Calculate 30%</button>
+            </div>
+            <div class="percentage-result" id="percentageResult">
+                Percentage results will appear here
+            </div>
         </div>
         <footer>
             <p>Created by JJF Creation</p>
