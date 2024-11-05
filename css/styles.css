@@ -188,12 +188,33 @@ label[for="weeks"] {
 }
 
 .datetime-display {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 15px;
     background-color: #f8f8f8;
     border-radius: 4px;
     border: 1px solid #ddd;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.left-logo {
+    margin-right: 15px;
+}
+
+.right-logo {
+    margin-left: 15px;
+}
+
+.time-date {
+    flex: 1;
+    text-align: center;
 }
 
 .dark-mode .datetime-display {
