@@ -186,3 +186,37 @@ label[for="weeks"] {
     color: #fff;
     border-color: #666;
 }
+
+.datetime-display {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.dark-mode .datetime-display {
+    background-color: #444;
+    border-color: #666;
+}
+
+#clock {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#date {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.dark-mode #clock {
+    color: #fff;
+}
+
+.dark-mode #date {
+    color: #ccc;
+}
