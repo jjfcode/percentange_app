@@ -99,15 +99,21 @@ function calculateChargeDays() {
     if (startDayName === 'friday' && endDayName === 'monday') {
         chargeDays = 1; // Weekend rate
         rate = 'Weekend Rate (Friday to Monday)';
-    } else if (startDayName === 'thursday' && endDayName === 'monday') {
-        chargeDays = 1.25; // Thursday to Monday rate
-        rate = 'Thursday to Monday Rate';
-    } else if (startDayName === 'wednesday' && endDayName === 'monday') {
-        chargeDays = 1.5; // Wednesday to Monday rate
-        rate = 'Wednesday to Monday Rate';
-    } else if (startDayName === 'tuesday' && endDayName === 'monday') {
-        chargeDays = 1.75; // Tuesday to Monday rate
-        rate = 'Tuesday to Monday Rate';
+    } else if ((startDayName === 'friday' && endDayName === 'tuesday') || 
+               (startDayName === 'thursday' && endDayName === 'monday') || 
+               (totalDays === 3 && !['saturday', 'sunday'].includes(startDayName))) {
+        chargeDays = 1.25; // 1.25x rate
+        rate = '1.25x Rate';
+    } else if ((startDayName === 'friday' && endDayName === 'wednesday') ||
+               (startDayName === 'wednesday' && endDayName === 'monday') || 
+               (totalDays === 4 && !['saturday', 'sunday'].includes(startDayName))) {
+        chargeDays = 1.5; // 1.5x rate
+        rate = '1.5x Rate';
+    } else if ((startDayName === 'friday' && endDayName === 'thursday') ||
+               (startDayName === 'tuesday' && endDayName === 'monday') || 
+               (totalDays === 5 && !['saturday', 'sunday'].includes(startDayName))) {
+        chargeDays = 1.75; // 1.75x rate
+        rate = '1.75x Rate';
     } else if (startDayName === 'monday' && endDayName === 'monday') {
         chargeDays = 2; // Full week rate
         rate = 'Full Week Rate (Monday to Monday)';
